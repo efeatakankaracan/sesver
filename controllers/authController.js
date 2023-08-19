@@ -19,6 +19,10 @@ const handleErrors = (err) => {
     errors.email = 'That email is not registered';
   }
 
+  if (err.message === 'incorrect name') {
+    errors.email = 'That name is not registered';
+  }
+
   // incorrect password
   if (err.message === 'incorrect password') {
     errors.password = 'That password is incorrect';
