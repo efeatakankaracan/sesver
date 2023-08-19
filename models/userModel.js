@@ -24,8 +24,8 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.statics.login = async function (email, password) {
-  const user = await this.findOne({ email });
+userSchema.statics.login = async function (name, password) {
+  const user = await this.findOne({ name });
   if (user) {
     const auth = await bcrypt.compare(password, user.password);
     if (auth) {
@@ -33,7 +33,7 @@ userSchema.statics.login = async function (email, password) {
     }
     throw Error("incorrect password");
   }
-  throw Error("incorrect email");
+  throw Error("incorrect name");
 };
 
 userSchema.pre("save", async function (next) {

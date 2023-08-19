@@ -71,10 +71,10 @@ module.exports.signup_post = async (req, res) => {
 };
 
 module.exports.login_post = async (req, res) => {
-  const { email, password } = req.body;
+  const { name, password } = req.body;
 
   try {
-    const user = await User.login(email, password);
+    const user = await User.login(name, password);
     const token = jwt.sign({ userEmail: user.email, userName: user.name, userId: user._id }, secretKey, { expiresIn: '1h' });
     res.status(201).json({ user: user, token });
     console.log(user)
